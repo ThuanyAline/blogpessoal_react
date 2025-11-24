@@ -8,4 +8,13 @@ export default defineConfig({
   [react(),
   tailwindcss(),
   ],
+  server: {
+    proxy: {
+      '/api': {
+        target: 'https://blogpessoal-spring-7kqu.onrender.com',
+        changeOrigin: true,
+        rewrite: (path) => path.replace(/^\/api/, '')
+      }
+    }
+  }
 })
