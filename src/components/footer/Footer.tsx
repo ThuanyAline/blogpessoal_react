@@ -1,14 +1,18 @@
 import { LinkedinLogoIcon ,GithubLogoIcon,  } from "@phosphor-icons/react";
+import { useContext, type ReactNode } from "react";
+import { AuthContext } from "../../contexts/AuthContext";
 
 
 function Footer(){
 
        let data = new Date().getFullYear()
+       
+       const {usuario} = useContext(AuthContext)
 
-       return (
-<>
+       let component: ReactNode;
 
-    <div className="flex justify-center bg-indigo-900 text-white">
+       if (usuario.token !== "") {
+           component = (<div className="flex justify-center bg-indigo-900 text-white">
          <div className="container flex flex-col items-center py-4">
             <p className="text-xl font-bold">
                 Blog Pessoal Thuany Silva | Copyrigth: {data}
@@ -24,6 +28,14 @@ function Footer(){
             </div>
             </div>
             </div>
+           )
+
+        }
+    
+  return (
+            <>
+
+    {component}
             </>
        )
     }
